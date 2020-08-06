@@ -25,6 +25,8 @@ echo "HeadsPercentage:$HeadsPercentage"
 TailsPercentage=$((($T*100)/$totalNumberOfFliping))
 echo "TailsPercentage:$TailsPercentage"
 echo "${dict[@]}"
+printf '%s\n' "${dict[@]}" | sort | uniq -c | sort -nr | head -1
+
 #Doublet combination
 HH=0
 HT=0
@@ -47,7 +49,7 @@ do
 	elif [ $randomCheck -eq 2 ]
 	then
 		((TH++))
-		 dict1[ "$j" ]="HT"
+		 dict1[ "$j" ]="TH"
 	else
 		((TT++))
 		 dict1[ "$j" ]="TT"
@@ -65,6 +67,7 @@ THPercentage=$((($TH*100)/$totalNumberOfFliping2))
 echo "THPercentage:$THPercentage"
 TTPercentage=$((($TT*100)/$totalNumberOfFliping2))
 echo "TTPercentage:$TTPercentage"
+printf '%s\n' "${dict1[@]}" | sort | uniq -c | sort -nr | head -1
 echo "${dict1[@]}"
 
 #Triplet combination
@@ -101,7 +104,7 @@ do
 	elif [ $randomCheck -eq 4 ]
    then
       ((HTT++))
-       dict2[ "$k" ]="HHT"
+       dict2[ "$k" ]="HTT"
 	elif [ $randomCheck -eq 5 ]
    then
       ((THT++))
@@ -137,4 +140,5 @@ TTHPercentage=$((($TTH*100)/$totalNumberOfFliping3))
 echo "TTHPercentage:$TTHPercentage"
 TTTPercentage=$((($TTT*100)/$totalNumberOfFliping3))
 echo "TTTPercentage:$TTTPercentage"
+printf '%s\n' "${dict2[@]}" | sort | uniq -c | sort -nr | head -1
 echo "${dict2[@]}"
